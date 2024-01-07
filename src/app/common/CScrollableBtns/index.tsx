@@ -1,0 +1,122 @@
+import React, { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import {
+	StyleSheet,
+	Text,
+	View,
+	ScrollView,
+	TouchableOpacity,
+	Dimensions,
+} from 'react-native'
+import { COLORS, FONTS, useColor } from '~theme/theme'
+
+const CScrollableBtns = ({
+	tab,
+	setTab,
+	labels,
+	translate,
+	textStyle,
+	followCount,
+}: any) => {
+	const { t } = useTranslation()
+	const color = useColor()
+	const scrollViewRef = useRef<any>(null)
+	const theme = useColor()
+	const tabs = Array.from({ length: labels.length }, (_, index) => index)
+
+	const handleTabPress = (item, index) => {
+		setTab(item)
+
+		scrollViewRef.current.scrollTo({ x: index * 100, y: 0, animated: true })
+
+		// update the button style
+		const btnWidth = 100 // assuming each button has a width of 100
+		const screenWidth = Dimensions.get('window').width
+		const scrollWidth = tabs.length * btnWidth
+		const scrollOffset = index * btnWidth
+
+		if (scrollWidth > screenWidth) {
+			if (scrollOffset + screenWidth > scrollWidth) {
+				// last button
+				scrollViewRef.current.scrollToEnd({ animated: true })
+			} else if (scrollOffset < screenWidth / 2) {
+				// first few buttons
+				scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true })
+			} else {
+				// middle buttons
+				scrollViewRef.current.scrollTo({
+					x: scrollOffset - screenWidth / 2 + btnWidth / 2,
+					y: 0,
+					animated: true,
+				})
+			}
+		}
+	}
+	return (
+		<View style={[styles.container, { borderBottomColor: color.gray }]}>
+			<ScrollView
+				ref={scrollViewRef}
+				horizontal
+				showsHorizontalScrollIndicator={false}>
+				{tabs?.map((item, index) => {
+					const isSame = tab === item
+					return (
+						<TouchableOpacity
+							key={index.toString()}
+							onPress={() => handleTabPress(item, index)}
+							style={[
+								styles.btn,
+								{
+									borderBottomColor: COLORS.primary,
+									borderBottomWidth: isSame ? 1 : 0,
+								},
+							]}>
+							{followCount ? (
+								<Text
+									style={{
+										...FONTS.h5,
+										color: isSame
+											? color.title
+											: theme.content,
+										fontWeight: isSame ? '600' : '400',
+										marginRight: 3,
+										...textStyle,
+									}}>
+									{followCount[index]}
+								</Text>
+							) : null}
+
+							<Text
+								style={{
+									...FONTS.h5,
+									color: isSame ? color.title : theme.content,
+									fontWeight: isSame ? '600' : '400',
+									...textStyle,
+								}}>
+								{translate
+									? t(labels[item] || item)
+									: labels[item] || item}
+							</Text>
+						</TouchableOpacity>
+					)
+				})}
+			</ScrollView>
+		</View>
+	)
+}
+const styles = StyleSheet.create({
+	container: {
+		borderBottomWidth: 1,
+		paddingLeft: 16,
+		width: '100%',
+	},
+	btn: {
+		marginRight: 20,
+		paddingHorizontal: 2,
+		paddingBottom: 10,
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+})
+
+export default React.memo(CScrollableBtns)

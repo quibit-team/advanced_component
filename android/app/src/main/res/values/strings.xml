@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Quibstore</string>
+     <string moduleConfig="true" name="CodePushDeploymentKey">J8He6-wudWsTuGG23pg5tgb-jacy2sMsrdIEL</string>
+</resources>

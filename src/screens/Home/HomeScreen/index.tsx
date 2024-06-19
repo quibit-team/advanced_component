@@ -84,10 +84,6 @@ const HomeScreen = () => {
 		}
 	}
 
-	const viewablityConfig = useRef({
-		itemVisiblePercentThreshold: 50,
-	}).current
-
 	const handleOnScroll = event => {
 		if (isManualScroll) {
 			const contentOffsetX = event.nativeEvent.contentOffset.x
@@ -121,7 +117,6 @@ const HomeScreen = () => {
 					style={[
 						styles.menuContainer,
 						{
-							// transform: [{ scale: scaleAnim }], Option 1
 							width: widthAnim,
 							height: heightAnim,
 						},
@@ -160,7 +155,6 @@ const HomeScreen = () => {
 				pagingEnabled
 				snapToAlignment="center"
 				showsHorizontalScrollIndicator={false}
-				viewabilityConfig={viewablityConfig}
 				onScroll={handleOnScroll}
 				// keyExtractor={item => item.key}
 				renderItem={({ item }) => (

@@ -4,5 +4,6 @@ const images = {
 	findjob_onboarding: require('./onboarding/findjob_onboarding.png'),
 	newfeed_onboarding: require('./onboarding/newfeed_onboarding.png'),
 	welcome_onboarding: require('./onboarding/welcome.png'),
+	reels_demo: require('./reels/test.jpg')
 }
 export { images }

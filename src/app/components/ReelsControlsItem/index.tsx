@@ -21,6 +21,9 @@ const ReelsControlsItem = ({
 			case 'flip': 
 				setValue(value === 'front' ? 'back' : 'front');
 				break
+			case 'effects':
+				setValue()
+				break
 		}
 	}
 

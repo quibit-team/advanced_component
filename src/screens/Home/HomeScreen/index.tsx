@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, Easing, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { CBackground, CFlatList, CustomStatusBar } from '~app/common'
+import { Animated, Dimensions, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { CBackground, CustomStatusBar } from '~app/common'
 import HomeScreenHeader from './HomeScreenHeader'
-import FeedsScreen from './FeedsScreen'
-import VideosScreen from './VideosScreen'
-import ReelsScreen from './ReelsScreen'
+import FeedsScreen from './FeedsScreen/FeedsScreen'
+import VideosScreen from './VideosScreen/VideosScreen'
 import { useColor, FONTS } from '~theme/theme'
 import CTabView from '~app/common/CTabView'
+import ReelsScreen from './ReelsScreen'
+import CameraScreen from './ReelsScreen/CameraScreen'
 
 const { width, height } = Dimensions.get('screen')
 

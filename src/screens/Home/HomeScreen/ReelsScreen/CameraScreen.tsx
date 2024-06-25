@@ -8,28 +8,17 @@ import {
 import PermissionsPage from './PermissionsPage'
 import NoCameraDeviceError from './NoCameraDeviceError'
 import { ReelsControls } from '~app/features'
-import { useCallback, useRef, useState } from 'react'
-import EffectsPickerContainer from '~app/components/EffectsPickerContainer/EffectsPickerContainer'
-import ReelsBottomSheet from '~app/components/ReelsBottomSheet'
+import { useState } from 'react'
 
-const ReelsScreen = () => {
+const CameraScreen = () => {
 	const [cameraPosition, setCameraPosition] =
 		useState<CameraPosition>('front')
 	const device = useCameraDevice(cameraPosition)
 	const { hasPermission } = useCameraPermission()
-
-	const bottomSheetRef = useRef<any>(null);
 	
-	// Function to open the bottom sheet
-	const handleOpenBottomSheet = useCallback(() => {
-		console.log("Handle open bottom sheet")
-		bottomSheetRef.current?.snapTo(1); // 1 corresponds to the '50%' snap point
-	  }, []);
-
-	  const handleCloseBottomSheet = useCallback(() => {
-		// Handle any actions needed when bottom sheet closes
-		console.log('Bottom sheet closed');
-	  }, []);
+	// const handleOpenBottomSheet = useCallback(() => {
+		
+	//   }, []);
 
 	if (!hasPermission) return <PermissionsPage />
 	if (device == null) return <NoCameraDeviceError />
@@ -44,9 +33,8 @@ const ReelsScreen = () => {
 			<ReelsControls
 				cameraPosition={cameraPosition}
 				setCameraPosition={setCameraPosition}
-				onBottomSheet={handleOpenBottomSheet}
+				// onBottomSheet={handleOpenBottomSheet}
 			/>
-			<ReelsBottomSheet onClose={handleCloseBottomSheet} />
 		</View>
 	)
 }
@@ -57,4 +45,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default ReelsScreen
+export default CameraScreen

@@ -6,7 +6,7 @@ import { FONTS } from '~theme'
 
 const options = ['10m', '60s', '15s', 'Photo', 'Video']
 
-const ReelsControls = ({ cameraPosition, setCameraPosition, onBottomSheet }) => {
+const ReelsControls = ({ cameraPosition, setCameraPosition }) => {
 	const [selectedOption, setSelectedOption] = useState('15s')
 	
 	return (
@@ -115,7 +115,7 @@ const ReelsControls = ({ cameraPosition, setCameraPosition, onBottomSheet }) => 
 					<ReelsControlsItem
 						title={'Effects'}
 						src={images.reels_demo}
-						setValue={onBottomSheet}
+						// setValue={onBottomSheet}
 						action={'effects'}
 					/>
 					<TouchableOpacity style={styles.cameraBtnContainer}>
@@ -133,9 +133,9 @@ const ReelsControls = ({ cameraPosition, setCameraPosition, onBottomSheet }) => 
 
 const styles = StyleSheet.create({
 	controls: {
-		flex: 0.85,
+		flex: 1,
 		justifyContent: 'space-between',
-		marginBottom: 50
+		paddingTop: 40
 	},
 	addSoundBtn: {
 		margin: 10,
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
 	rightControls: {
 		position: 'absolute',
 		right: 10,
-		top: 10,
+		top: 80,
 		alignItems: 'center',
 	},
 	optionsContainer: {

@@ -1,22 +1,25 @@
 import { useEffect, useState } from 'react'
 import {
-	Image,
 	PermissionsAndroid,
 	ScrollView,
 	StyleSheet,
 	Text,
-	TouchableOpacity,
 	View,
 } from 'react-native'
 import { CameraRoll } from '@react-native-camera-roll/camera-roll'
 import { CFlatList } from '~app/common'
 import { FONTS } from '~theme'
+import { VideoItem } from '~app/entities'
 
 const ReelsImagesPicker = () => {
 	const [nodes, setNodes] = useState<any>([])
 
 	useEffect(() => {
-		// checkPermission()
+		// checkPermission().then(permissionGranted => {
+		// 	if (permissionGranted) {
+		// 		getVideos()
+		// 	}
+		// })
 		getVideos()
 	}, [])
 
@@ -55,20 +58,13 @@ const ReelsImagesPicker = () => {
 		// videos.edges.map(edge => console.log('Video = ', edge.node.image.uri))
 	}
 
-	const renderItem = ({ item }) => (
-		<TouchableOpacity style={styles.videoItem}>
-			<Image
-				source={{ uri: item.image.uri }}
-				style={styles.videoThumbnail}
-			/>
-		</TouchableOpacity>
-	)
+	const renderItem = ({ item }) => <VideoItem item={item} />
 
 	return (
 		<View style={styles.container}>
 			{nodes.length > 0 ? (
 				<ScrollView style={styles.videosContainer}>
-					<Text style={[styles.disclaimerMsg, {...FONTS.h5}]}>
+					<Text style={[styles.disclaimerMsg, { ...FONTS.h5 }]}>
 						These videos will only be used within this app and will
 						not be shared.
 					</Text>
@@ -96,25 +92,14 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: '100%',
 	},
-	videoItem: {
-		width: 300,
-		height: 300,
-		margin: 2,
-		aspectRatio: 0.6,
-		flex: 1,
-	},
-	videoThumbnail: {
-		width: '100%',
-		height: '100%',
-	},
 	disclaimerMsg: {
 		width: '70%',
 		textAlign: 'center',
 		alignSelf: 'center',
 		fontWeight: '800',
 		paddingHorizontal: 10,
-		 marginBottom: 10
-	}
+		marginBottom: 10,
+	},
 })
 
 export default ReelsImagesPicker

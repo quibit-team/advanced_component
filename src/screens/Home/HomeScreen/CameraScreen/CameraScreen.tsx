@@ -5,8 +5,8 @@ import {
 	useCameraDevice,
 	useCameraPermission,
 } from 'react-native-vision-camera'
-import PermissionsPage from './PermissionsPage'
-import NoCameraDeviceError from './NoCameraDeviceError'
+import PermissionsPage from '../ReelsScreen/PermissionsPage'
+import NoCameraDeviceError from '../ReelsScreen/NoCameraDeviceError'
 import { ReelsControls } from '~app/features'
 import { useState } from 'react'
 

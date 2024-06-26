@@ -7,7 +7,7 @@ import VideosScreen from './VideosScreen/VideosScreen'
 import { useColor, FONTS } from '~theme/theme'
 import CTabView from '~app/common/CTabView'
 import ReelsScreen from './ReelsScreen'
-import CameraScreen from './ReelsScreen/CameraScreen'
+import CameraScreen from './CameraScreen/CameraScreen'
 
 const { width, height } = Dimensions.get('screen')
 

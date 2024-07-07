@@ -43,7 +43,7 @@ const UserBottomTabs = () => {
 						styles.bottomStyle,
 						{ height: hidebar ? 0 : UI.BOTTOM_TAB_HEIGHT },
 					]}>
-					<BottomTabBar {...props} />
+					{/* <BottomTabBar {...props} /> */}
 				</View>
 			)}
 			screenOptions={{
@@ -53,7 +53,8 @@ const UserBottomTabs = () => {
 				tabBarLabelStyle: {
 					fontSize: 11,
 				},
-			}}>
+			}}
+			>
 			<Tabs.Screen
 				name="HomeTab"
 				options={() => ({

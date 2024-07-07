@@ -20,6 +20,11 @@ const UnAuthenticateScreens = () => {
 				options={{ headerShown: false }}
 				component={Screens.OnBoardingScreen}
 			/>
+			<Stack.Screen
+				name="CameraScreen"
+				options={{ headerShown: false }}
+				component={Screens.CameraScreen}
+			/>
 			<Stack.Screen name="UserBottomTabs" component={UserBottomTabs} />
 
 			{/* <Stack.Screen
